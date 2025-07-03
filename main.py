@@ -12,7 +12,13 @@ class ChatRequest(BaseModel):
 
 @app.post("/chat")
 async def chat(req: ChatRequest):
-    print(f"Received prompt: {req.prompt}")
-    response = requests.post(LOCAL_MODEL_URL, json={"prompt": req.prompt})
-    print(f"Local model response: {response.text}")
-    return response.json()
+    print(f"[Railway /chat] Received prompt: {req.prompt}")
+    try:
+        response = requests.post(LOCAL_MODEL_URL, json={"prompt": req.prompt}, timeout=10)
+        print(f"[Railway /chat] Response status: {response.status_code}")
+        print(f"[Railway /chat] Response body: {response.text}")
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"[Railway /chat] Error calling local model: {e}")
+        return {"error": "Failed to reach local model."}
