@@ -12,6 +12,7 @@ class ChatRequest(BaseModel):
 
 @app.post("/chat")
 async def chat(req: ChatRequest):
-    # بعت الـ prompt للسيرفر المحلي
+    print(f"Received prompt: {req.prompt}")
     response = requests.post(LOCAL_MODEL_URL, json={"prompt": req.prompt})
+    print(f"Local model response: {response.text}")
     return response.json()
