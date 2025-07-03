@@ -5,7 +5,7 @@ import requests
 app = FastAPI()
 
 # رابط سيرفرك المحلي عبر ngrok
-LOCAL_MODEL_URL = "https://07df-156-203-135-116.ngrok-free.app/infer"
+LOCAL_MODEL_URL = "https://951f-156-203-135-116.ngrok-free.app/infer"
 
 class ChatRequest(BaseModel):
     prompt: str
