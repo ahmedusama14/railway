@@ -5,7 +5,7 @@ import requests
 app = FastAPI()
 
 # رابط سيرفرك المحلي عبر ngrok
-LOCAL_MODEL_URL = "https://mathematical-infection-variations-gt.trycloudflare.com"
+LOCAL_MODEL_URL = "https://mathematical-infection-variations-gt.trycloudflare.com/infer"
 
 class ChatRequest(BaseModel):
     prompt: str
